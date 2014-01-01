@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+mba1:
+  description: MBA_1
+  start_date: 2013-30-01
+  end_date: 2014-01-01
+  maximum_subscriptions: 10
+  course_code: ADMEMP-00
+
+two:
+  description: MyString
+  start_date: 2014-01-01
+  end_date: 2014-01-01
+  maximum_subscriptions: 1
+  course_code: MyString
