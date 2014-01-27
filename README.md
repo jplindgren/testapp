@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/jplindgren/testapp.png)](https://codeclimate.com/github/jplindgren/testapp)
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
