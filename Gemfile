@@ -16,6 +16,10 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
+group :deployment do
+  gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
+end
+
 group :test do		
 	gem 'shoulda'
   gem 'selenium-webdriver', '2.35.1'
