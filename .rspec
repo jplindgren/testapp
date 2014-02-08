@@ -1,1 +1,2 @@
---color
+#Disable colors when using windows. It does not handle properly ANSI colors.
+#--color
