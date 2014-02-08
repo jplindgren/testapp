@@ -1,13 +1,17 @@
 require 'spec_helper'
 
 describe User do
-  before { @user = User.new(email:"joaopozo@gmail.com", name: "Joao Paulo Lindgren") }
+  before { @user = User.new(email:"joaopozo@gmail.com", name: "Joao Paulo Lindgren", password: "123456", password_confirmation: "123456") }
 
   subject { @user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
 
+  it {should respond_to(:authenticate) }
   it { should be_valid }
 
   describe "When name is not present" do
@@ -64,5 +68,39 @@ describe User do
   	end
 
   	it { should_not be_valid }
+  end
+
+  describe "when passowrd is not presented" do
+    before do
+      @user = User.new(name: "Example User", email: "user@example.com",
+                       password: " ", password_confirmation: " ")
+    end
+    it { should_not  be_valid }
+  end
+
+  describe "when passowrd does not match confirmation" do
+    before { @user.password_confirmation = "mismatch" }
+    it { should_not be_valid }
+  end
+
+  describe "return value of authenticate method" do
+    before { @user.save }
+    let(:user_found) { User.find_by_email(@user.email) }
+
+    describe "with valid password" do
+      it { should eq user_found.authenticate(@user.password) }
+    end
+
+    describe "with valid password" do
+      let(:user_for_invalid_password) { @user.authenticate("invalid") }
+      it { should_not eq user_for_invalid_password }
+      specify { expect(user_for_invalid_password).to be_false }
+    end
+
+    describe "with a password that's too short" do
+      before { @user.password = @user.password_confirmation = "a" * 5 }
+      it { should be_invalid }
+    end
+
   end
 end
