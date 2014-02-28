@@ -1,2 +1,5 @@
+<<<<<<< HEAD
 #Disable colors when using windows. It does not handle properly ANSI colors.
+=======
+>>>>>>> be600bd601e09c0a19c824bb61c7aa5618b63f57
 #--color
