@@ -3,12 +3,6 @@ require 'spec_helper'
 describe "User pages" do
 	subject { page } 
 
-  describe "Sign Up" do
-  	before { visit signup_path }
-    it { should have_content 'Sign up'}
-    it { should have_title 'Sign up' }
-  end
-
   describe "Profile page" do
   	let(:user) { FactoryGirl.create(:user) }
   	before { visit user_path(user) }
@@ -18,7 +12,7 @@ describe "User pages" do
 
   describe "signup" do
     before { visit signup_path }
-    let(:submit) { "Create my account" }
+    let(:submit) { "Save" }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -54,5 +48,21 @@ describe "User pages" do
         it { should have_selector('div.alert.alert-success', text: 'Welcome')}
       end
     end
-  end
+  end #signup
+
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before { visit edit_user_path(user) }
+
+    it { should have_title 'Edit user' }
+    it { should have_content 'Update your profile' }
+    it { should have_link 'change', href: 'http://gravatar.com/emails' }
+
+    describe "with invalid information" do
+      before { click_button 'Save' }
+
+      it { should have_content('error') }
+    end
+  end #edit
+
 end
