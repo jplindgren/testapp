@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :set_user, only: [ :show, :edit, :update, :destroy ]
+  before_filter :signed_in_user, only: [:edit, :update]
 
   # GET /users
   # GET /users.json
@@ -45,14 +46,11 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 
@@ -67,12 +65,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
+  private
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
+    #Before filters
+
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
 
 end
