@@ -25,6 +25,7 @@ group :development, :test do
 	gem 'rspec-rails', '2.13.1'
   gem 'factory_girl_rails', '4.2.1'
   gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
+  gem 'debugger'
 end
 
 # Gems used only for assets and not required
