@@ -6,6 +6,10 @@ gem 'bootstrap-sass', '2.3.2.0'
 #used to create hash passwords
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'strong_parameters'
+gem 'faker', '1.1.2'
+
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
