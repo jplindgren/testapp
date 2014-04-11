@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ruby-debug'
 
 describe User do
   before { @user = User.new(email:"joaopozo@gmail.com", name: "Joao Paulo Lindgren", password: "123456", password_confirmation: "123456") }
@@ -12,6 +13,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
+  it { should respond_to(:microposts) }
 
   it {should respond_to(:authenticate) }
 
@@ -37,7 +39,7 @@ describe User do
   	it { should_not be_valid}
   end
 
-  describe "When length is bigger then the limit" do
+  describe "When name length is bigger then the limit" do
   	before { @user.name = "a" * 51 }
   	it { should_not be_valid }
   end
@@ -138,4 +140,23 @@ describe User do
     end 
     it { should be_admin }
   end
+
+  describe "micropost associations" do
+    before { @user.save }
+    let!(:older_micropost) { FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)  } 
+    let!(:newer_micropost) { FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago) }
+
+    it "should have the right microposts in the right order" do
+      @user.microposts.should == [newer_micropost, older_micropost]
+    end
+
+    it "should destroy associated micrposts when deleted" do
+      microposts = @user.microposts.dup
+      @user.destroy
+      microposts.should_not be_empty
+      microposts.each do |m|
+        Micropost.find_by_id(m.id).should be_nil
+      end
+    end
+  end #micropost associations
 end
