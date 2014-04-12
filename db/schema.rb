@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20140410025123) do
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
+  create_table "oferta", :force => true do |t|
+    t.string   "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "maximum_subscriptions"
+    t.string   "course_code"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
