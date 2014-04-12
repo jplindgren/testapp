@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'ruby-debug'
 
+include ApplicationHelper
+
 describe "Authentication" do
 
   subject { page }
@@ -78,7 +80,20 @@ describe "Authentication" do
           before { visit users_path user }
           it { should have_title('Sign in') }
         end 
-      end      
+      end  
+
+      describe "in the Microposts controller" do
+        describe "submitting to the update action" do
+          before { post microposts_path }
+          specify {expect(response).to redirect_to signin_path }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete micropost_path(FactoryGirl.create(:micropost)) }
+          specify {expect(response).to redirect_to signin_path }
+        end
+      end
+
     end #for non-signed-in user
 
     describe "as wrong user" do

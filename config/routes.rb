@@ -4,8 +4,8 @@ TestApp::Application.routes.draw do
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   
-  resources :microposts
   resources :users
+  resources :microposts, only: [ :create, :destroy ]
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
