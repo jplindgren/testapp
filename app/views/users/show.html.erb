@@ -5,10 +5,13 @@
 	<aside class="span4">
 		<section>
 			<h1>
-				<%= gravatar_for @user %> 
+				<%= gravatar_for @user, size: 100 %> 
 				<%= @user.name %>			
 			</h1>
 		</section>
+		<section>
+	      <%= render 'shared/follow/stats' %>
+	    </section>
 	</aside>
 	<div class="span8">
 		<% if @user.microposts.any? %>
