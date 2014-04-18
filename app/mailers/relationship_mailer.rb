@@ -11,8 +11,4 @@ class RelationshipMailer < ActionMailer::Base
 
     mail(:to => "#{followed.name} <#{followed.email}>", :subject => "#{follower.name} is following you!")
   end
-
-  def teste
-    mail(:to => "joaopozo@gmail.com", :subject => "Teste")
-  end
 end
