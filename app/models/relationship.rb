@@ -1,4 +1,5 @@
 class Relationship < ActiveRecord::Base
+	after_create :send_notification
   attr_accessible :followed_id
 
   belongs_to :follower, class_name: "User"
@@ -6,4 +7,8 @@ class Relationship < ActiveRecord::Base
 
   validates :followed_id, presence: true
   validates :follower_id, presence: true
+
+  def send_notification
+  	RelationshipMailer.new_follower_notification(followed, follower).deliver
+  end
 end

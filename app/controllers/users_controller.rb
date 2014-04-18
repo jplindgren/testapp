@@ -73,6 +73,10 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def teste
+    RelationshipMailer.teste().deliver()
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)

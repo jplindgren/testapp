@@ -15,3 +15,6 @@
 /tmp
 
 .secret
+
+#Ignore email config file
+/config/email.yml
