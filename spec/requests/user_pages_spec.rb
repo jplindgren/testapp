@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ruby-debug'
 
 describe "User pages" do
 	subject { page } 
@@ -12,6 +13,7 @@ describe "User pages" do
 
     it { should have_title('All users') }
     it { should have_selector('h1',  text: 'All users') }
+    it { should have_submit_button("Search") }
 
     describe "pagination" do
       before(:all) { 30.times { FactoryGirl.create(:user) } }
@@ -23,6 +25,24 @@ describe "User pages" do
         User.paginate(page: 1).each do |user|
           expect(page).to have_selector('li', text: user.name)
         end
+      end
+    end
+
+    describe "search" do
+      let!(:user_search_1) { FactoryGirl.create(:user, name: "Joao Paulo") }
+      let!(:user_search_2) { FactoryGirl.create(:user, name: "Joao") }
+      let!(:user_search_3) { FactoryGirl.create(:user, name: "Aline") }
+      let(:search_name) { "joao" } 
+
+      before do
+        fill_in "search", with: search_name
+        click_button "Search"
+      end
+
+      it "should list found users" do
+        expect(page).to have_selector('li', text: user_search_1.name)
+        expect(page).to have_selector('li', text: user_search_2.name)
+        expect(page).to_not have_selector('li', text: user_search_3.name)
       end
     end
 
