@@ -210,4 +210,19 @@ describe User do
       its(:followed_users) { should_not include(other_user) }
     end
   end #following
+
+  describe "search" do
+    let!(:first_user) { FactoryGirl.create(:user, name: "Joao Paulo") }
+    let!(:second_user) { FactoryGirl.create(:user, name: "Joao Paulo") }
+    let!(:third_user) { FactoryGirl.create(:user, name: "Aline") }
+    let(:search_parameter) { "joao" }
+
+    describe "without parameter" do
+      it { User.search(nil).count.should == 3 }
+    end
+
+    describe "with parameter" do
+      it { User.search(search_parameter).count.should == 2 }
+    end
+  end
 end
