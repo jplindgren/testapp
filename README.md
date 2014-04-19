@@ -1,6 +1,6 @@
 [![Code Climate](https://codeclimate.com/github/jplindgren/testapp.png)](https://codeclimate.com/github/jplindgren/testapp)
 
-git push heroku production:master to publish
+git push heroku producton:master to publish
 
 email.yml
 development:
