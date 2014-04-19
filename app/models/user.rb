@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      User.where('name like ?', "%#{search}%")
+      User.where('lower(name) like ?', "%#{search.downcase}%")
     else
       scoped
     end     
