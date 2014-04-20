@@ -8,14 +8,15 @@ describe "Authentication" do
   subject { page }
 
   describe "signin" do
-  	before { visit signin_path }	
+  	before { visit signin_path }
+    let(:signin_button) { I18n.t("sessions.new.submit") }	
 	
 	  it { should have_content('Sign in') }
     it { should_not have_link('Profile') }
     it { should_not have_link('Settings') }
 	
   	describe "with invalid information" do
-    		before { click_button "Sign in" }
+    		before { click_button signin_button }
     		
     		it { should have_title('Sign in') }
   		  it { should have_selector('div.alert.alert-error') }  
@@ -51,17 +52,27 @@ describe "Authentication" do
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)
-          fill_in "Email", with: user.email
-          fill_in "Password", with: user.password
-          click_button "Sign in"
+          sign_in user
         end
 
         describe "after signing in" do
           it "should render the desired protected page" do
             expect(page).to have_title('Edit user')
           end
-        end
-      end
+
+          #describe "when signing in again" do
+          #  before do
+          #    delete signout_path
+          #    visit signin_path
+          #    sign_in user
+          #  end
+          
+          #  it "should render the default (profile) page" do
+          #    page.should have_selector('title', text: user.name)
+          #  end
+          #end
+        end #after signing in
+      end # when attempting to visit a protected page
 
       describe "in the Users controller" do
 
@@ -147,20 +158,6 @@ describe "Authentication" do
       end
     end
   end #authorization
-
-  def sign_in(user, options = {})
-    if options[:no_capybara]
-      # Sign in when not using Capybara.
-      remember_token = User.new_remember_token
-      cookies[:remember_token] = remember_token
-      user.update_attribute(:remember_token, User.encrypt(remember_token))
-    else
-      visit signin_path
-      fill_in "Email", with: user.email
-      fill_in "Password", with: user.password
-      click_button "Sign in"
-    end
-  end
 end 
 
 

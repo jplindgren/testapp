@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'ruby-debug'
 
+include ApplicationHelper
+
 describe "User pages" do
 	subject { page } 
 
@@ -151,7 +153,7 @@ describe "User pages" do
 
   describe "signup" do
     before { visit signup_path }
-    let(:submit) { "Save" }
+    let(:submit) { I18n.t("helpers.submit.create", model: I18n.t("activerecord.models.user") ) }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -168,10 +170,7 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
+        fill_in_user(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
       end
 
       it "should create a user" do
@@ -191,17 +190,19 @@ describe "User pages" do
 
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:edit_button) { I18n.t("helpers.submit.update", model: I18n.t("activerecord.models.user")) }
+
     before do
       sign_in(user)
       visit edit_user_path(user) 
     end
      
     it { should have_title 'Edit user' }
-    it { should have_content 'Update your profile' }
-    it { should have_link 'change', href: 'http://gravatar.com/emails' }
+    it { should have_content I18n.t('users.edit.update_your_profile') }
+    it { should have_link I18n.t('users.edit.change'), href: 'http://gravatar.com/emails' }
 
     describe "with invalid information" do
-      before { click_button 'Save' }
+      before { click_button edit_button }
 
       it { should have_content('error') }
     end
@@ -210,11 +211,8 @@ describe "User pages" do
       let(:new_name)  { "New Name" }
       let(:new_email) { "new@example.com" }
       before do
-        fill_in "Name",             with: new_name
-        fill_in "Email",            with: new_email
-        fill_in "Password",         with: user.password
-        fill_in "Confirmation", with: user.password
-        click_button "Save"
+        fill_in_user(name: new_name, email: new_email, password: user.password, password_confirmation: user.password)
+        click_button edit_button
       end
 
       it { should have_title(new_name) }
@@ -252,18 +250,4 @@ describe "User pages" do
       it { should have_link(user.name, href: user_path(user)) }
     end
   end #following/followers
-
-  def sign_in(user, options = {})
-    if options[:no_capybara]
-      # Sign in when not using Capybara.
-      remember_token = User.new_remember_token
-      cookies[:remember_token] = remember_token
-      user.update_attribute(:remember_token, User.hash(remember_token))
-    else
-      visit signin_path
-      fill_in "Email", with: user.email
-      fill_in "Password", with: user.password
-      click_button "Sign in"
-    end
-  end
 end

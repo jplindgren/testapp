@@ -1,0 +1,10 @@
+pt-BR:
+  back: "Voltar"
+  users:
+    form:
+      SignIn: "Registrar"
+  shared:
+    user_info:
+      view_my_profile: "visualizar minha conta"
+    micropost_form:
+      compose_new_micropost: "escreva um novo micropost..."

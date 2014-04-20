@@ -1,0 +1,23 @@
+pt-BR:
+  users:
+    edit:
+      title: Editar {resource}
+      update: Atualizar
+      update_your_profile: Atualize seu profile
+      cancel:
+        title: Cancelar minha conta
+        message: Não está contente?
+        action: Cancelar minha conta
+        confirm: Tem certeza?
+      back: Voltar
+      change: Trocar
+    new:
+      title: Registrar
+      submit: Registrar
+    show:
+      back: Voltar
+      edit: Editar
+  sessions:
+    new:
+      title: Login
+      submit: Login
