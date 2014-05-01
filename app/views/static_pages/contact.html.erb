@@ -1,3 +1,80 @@
-<% provide(:title, 'Contact') %>
-<h1>Contact</h1>
-<p>Find me in app/views/static_pages/contact.html.erb</p>
+<% provide(:title, t('contact')) %>
+<div class="container">
+    
+
+    <div class="row quick-contact">
+        <div class="span12">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 class="title-contact"><%= t('contact') %></h1>
+                </div>
+                <div class="col-md-4 contact-email">
+                    <h3>jpdesenvolver@gmail.com</h3>
+                </div>
+                <div class="col-md-4">
+                    <div class="row contact">
+                        <div class="span6">
+                            <a href="#" class="skype"><i class="fa fa-skype"></i>Skype</a>
+                        </div>
+                        <div class="span6">
+                            <a href="https://plus.google.com/+JoaoPauloLindgren/" class="google"><i class="fa fa-google-plus"></i>Google+</a>
+                        </div>
+                    </div>
+                    <div class="row contact">
+                        <div class="span6">
+                            <a href="http://www.linkedin.com/pub/jo%C3%A3o-paulo-pozo-lindgren/2a/59a/678" class="linkedin"><i class="fa fa-linkedin"></i>Linked In</a>
+                        </div>
+                        <div class="span6">
+                            <a href="https://twitter.com/joaopozo" class="twitter"><i class="fa fa-twitter"></i>@joaopozo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" action="" method="post">
+          <fieldset>
+            <legend class="text-center">Contact us</legend>
+    
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Name</label>
+              <div class="col-md-9">
+                <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">Your E-mail</label>
+              <div class="col-md-9">
+                <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="message">Your message</label>
+              <div class="col-md-9">
+                <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
+              </div>
+            </div>
+    
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>

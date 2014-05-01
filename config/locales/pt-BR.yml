@@ -1,10 +1,33 @@
 pt-BR:
-  back: "Voltar"
+  back: "voltar"
+  are_you_sure: "Tem certeza?"
+  error: "erro"
+  form_error: "O formulário contém %{errors}."
+  contact: "Contato"
+  help: "Ajuda"
+  account: "Minha Conta"
+  settings: "Configurações"
+  users_link: "Usuários"
   users:
     form:
       SignIn: "Registrar"
   shared:
+    unlogged_home:
+      welcome: "Bem vindo ao JP MicroTwitter"
+      explaining: "Esse é um projeto exemplo usando Ruby 1.9.3, Rails 3.2. O código fonte você encontra no " 
+      sign_up: "Inscreva-se já!"
     user_info:
       view_my_profile: "visualizar minha conta"
     micropost_form:
       compose_new_micropost: "escreva um novo micropost..."
+    follow:
+      stats:
+        following: "seguindo"
+        followers: "seguidores"
+    feed_item:
+      time_ago: "Postado %{time_ago} atrás"
+  layouts:
+    footer:
+      about: "Sobre"
+    header:
+      sign_out: "Sair"

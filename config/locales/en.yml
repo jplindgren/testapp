@@ -1,10 +1,27 @@
 en:
-  back: "Voltar"
+  back: "back"
+  are_you_sure: "Are you sure?"
+  error: "erro"
+  form_error: "The form contains %{errors}."
+  contact: "Contato"
+  help: "Ajuda"
+  account: "Account"
+  settings: "Settings"
+  users_link: "Users"
   users:
     form:
-      SignIn: "Registrar"
+      SignIn: "Sign in"
   shared:
+    unlogged_home:
+      welcome: "Welcome to the JP MicroTwitter"
+      explaining: "This is a sample application using ruby 1.9.3, rails 3.2. The source code can be found in " 
+      sign_up: "Sign up now!"
     user_info:
       view_my_profile: "view my profile"
     micropost_form:
       compose_new_micropost: "Compose new micropost..."
+    feed_item:
+      time_ago: "Posted %{time_ago} ago"
+  layouts:
+    header:
+      sign_out: "Sign out"

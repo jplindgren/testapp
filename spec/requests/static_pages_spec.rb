@@ -43,8 +43,8 @@ describe "Static pages" do
           visit root_path 
         end
 
-        it { should have_link("0 following", href: following_user_path(user)) }
-        it { should have_link("1 followers", href: followers_user_path(user)) }
+        it { should have_link("0 #{I18n.t('shared.follow.stats.following')}", href: following_user_path(user)) }
+        it { should have_link("1 #{I18n.t('shared.follow.stats.followers')}", href: followers_user_path(user)) }
       end
     end
   end
