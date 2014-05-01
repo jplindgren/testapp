@@ -1,44 +1,41 @@
 <% provide(:title, t('contact')) %>
-<div class="container">
-    
+<div class="container">    
 
-    <div class="row quick-contact">
-        <div class="span12">
-            <div class="row">
-                <div class="col-md-4">
-                    <h1 class="title-contact"><%= t('contact') %></h1>
-                </div>
-                <div class="col-md-4 contact-email">
-                    <h3>jpdesenvolver@gmail.com</h3>
-                </div>
-                <div class="col-md-4">
-                    <div class="row contact">
-                        <div class="span6">
-                            <a href="#" class="skype"><i class="fa fa-skype"></i>Skype</a>
-                        </div>
-                        <div class="span6">
-                            <a href="https://plus.google.com/+JoaoPauloLindgren/" class="google"><i class="fa fa-google-plus"></i>Google+</a>
-                        </div>
-                    </div>
-                    <div class="row contact">
-                        <div class="span6">
-                            <a href="http://www.linkedin.com/pub/jo%C3%A3o-paulo-pozo-lindgren/2a/59a/678" class="linkedin"><i class="fa fa-linkedin"></i>Linked In</a>
-                        </div>
-                        <div class="span6">
-                            <a href="https://twitter.com/joaopozo" class="twitter"><i class="fa fa-twitter"></i>@joaopozo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="row quick-contact">
+      <div class="span12">
+          <div class="row">
+              <div class="col-md-4">
+                  <h1 class="title-contact"><%= t('contact') %></h1>
+              </div>
+              <div class="col-md-4 contact-email">
+                  <h3>jpdesenvolver@gmail.com</h3>
+              </div>
+              <div class="col-md-4">
+                  <div class="row contact">
+                      <div class="span6">
+                          <a href="#" class="skype"><i class="fa fa-skype"></i>Skype</a>
+                      </div>
+                      <div class="span6">
+                          <a href="https://plus.google.com/+JoaoPauloLindgren/" class="google"><i class="fa fa-google-plus"></i>Google+</a>
+                      </div>
+                  </div>
+                  <div class="row contact">
+                      <div class="span6">
+                          <a href="http://www.linkedin.com/pub/jo%C3%A3o-paulo-pozo-lindgren/2a/59a/678" class="linkedin"><i class="fa fa-linkedin"></i>Linked In</a>
+                      </div>
+                      <div class="span6">
+                          <a href="https://twitter.com/joaopozo" class="twitter"><i class="fa fa-twitter"></i>@joaopozo</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
-
-
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="well well-sm">
-          <form class="form-horizontal" action="" method="post">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="well well-sm">
+        <%= form_tag(send_mail_path, :class => "form-horizontal") do %>
           <fieldset>
             <legend class="text-center">Contact us</legend>
     
@@ -73,8 +70,8 @@
               </div>
             </div>
           </fieldset>
-          </form>
-        </div>
+        <% end %>
       </div>
     </div>
+  </div>
 </div>

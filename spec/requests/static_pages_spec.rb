@@ -52,8 +52,8 @@ describe "Static pages" do
   describe "Help page" do
     before { visit help_path }
 
-    let(:heading) { "Help" }
-    let(:page_title) { "Help" }
+    let(:heading) { I18n.t("help") }
+    let(:page_title) { I18n.t("help") }
 
     it_should_behave_like "all static pages"
   end
@@ -70,8 +70,8 @@ describe "Static pages" do
   describe "Contact page" do
     before { visit contact_path }
 
-    let(:heading) { "Contact" }
-    let(:page_title) { "Contact" }
+    let(:heading) { I18n.t("contact") }
+    let(:page_title) { I18n.t("contact") }
     
     it_should_behave_like "all static pages"
   end

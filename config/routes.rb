@@ -3,6 +3,7 @@ TestApp::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/send_mail', to: 'static_pages#send_mail', via: 'post'
   
   resources :users do
     member do
