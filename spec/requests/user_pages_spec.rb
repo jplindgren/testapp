@@ -229,25 +229,44 @@ describe "User pages" do
     before { user.follow!(other_user) }
 
     describe "following users" do
-      before do
-        sign_in user
-        visit following_user_path user
+      before { sign_in user }
+
+      context "when seeing his own profile" do
+        before { visit following_user_path user }
+
+        it { should have_title('Following') }
+        it { should have_selector('h3', text: 'Following') }
+        it { should have_link(other_user.name, href: user_path(other_user)) }  
       end
 
-      it { should have_title('Following') }
-      it { should have_selector('h3', text: 'Following') }
-      it { should have_link(other_user.name, href: user_path(other_user)) }
+      context "when seeing the other_profile" do
+        before { visit following_user_path other_user }
+
+        it { should have_title('Following') }
+        it { should have_selector('h3', text: 'Following') }
+        it { should_not have_link(other_user.name, href: user_path(other_user)) }  
+      end
+
     end
 
     describe "followers" do
-      before do
-        sign_in other_user
-        visit followers_user_path(other_user)
+      before { sign_in user }
+
+      context "when seeing his own profile" do
+        before { visit followers_user_path(user) }          
+
+        it { should have_title('Followers') }
+        it { should have_selector('h3', text: 'Followers') }
+        it { should_not have_link(user.name, href: user_path(user)) }
       end
 
-      it { should have_title('Followers') }
-      it { should have_selector('h3', text: 'Followers') }
-      it { should have_link(user.name, href: user_path(user)) }
+      context "when seeing the other_profile" do
+        before { visit followers_user_path(other_user) }
+
+        it { should have_title('Followers') }
+        it { should have_selector('h3', text: 'Followers') }
+        it { should have_link(user.name, href: user_path(user)) }
+      end
     end
   end #following/followers
 end
